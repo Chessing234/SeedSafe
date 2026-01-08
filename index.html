@@ -1,1 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeedSafe - Reimagining Seed Storage</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Playfair Display', Georgia, serif;
+            line-height: 1.6;
+            color: #2d3e2d;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(34, 63, 42, 0.95);
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            color: #f5f5f0;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            position: relative;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            color: #f5f5f0;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.7;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            margin-top: 70px;
+            overflow: hidden;
+            background: #223f2a;
+        }
+
+        .hero-video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .hero-video-bg canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to right, rgba(34, 63, 42, 0.95) 0%, rgba(34, 63, 42, 0.85) 40%, rgba(34, 63, 42, 0.4) 70%, transparent 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            color: #f5f5f0;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            color: #e8e8e0;
+            max-width: 600px;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 5%;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 3.5rem;
+            margin-bottom: 3rem;
+            font-weight: 400;
+            color: #223f2a;
+        }
+
+        /* The Problem Section */
+        #problem {
+            background: #3d6547;
+            color: #f5f5f0;
+        }
+
+        #problem h2 {
+            color: #f5f5f0;
+        }
+
+        #problem p {
+            font-size: 1.3rem;
+            line-height: 2;
+            margin-bottom: 2rem;
+            max-width: 900px;
+        }
+
+        /* Prototype Section */
+        #prototype {
+            background: linear-gradient(rgba(61, 101, 71, 0.7), rgba(61, 101, 71, 0.7)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%234a7c59" width="1200" height="800"/></svg>');
+            background-size: cover;
+            color: #f5f5f0;
+        }
+
+        #prototype h2 {
+            color: #f5f5f0;
+        }
+
+        .prototype-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .prototype-card {
+            background: rgba(245, 245, 240, 0.95);
+            padding: 2.5rem;
+            border-radius: 8px;
+            color: #2d3e2d;
+        }
+
+        .prototype-card p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        /* Unique Section */
+        #unique {
+            background: #c5c9b8;
+        }
+
+        #unique p {
+            font-size: 1.2rem;
+            line-height: 2;
+            margin-bottom: 2rem;
+            max-width: 1000px;
+        }
+
+        /* Team Section */
+        #team {
+            background: #99a68a;
+            color: #2d3e2d;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            text-align: left;
+        }
+
+        .team-member-photo {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .team-member h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #1a2e1a;
+        }
+
+        .team-member p {
+            font-size: 1.05rem;
+            color: #2d3e2d;
+            line-height: 1.6;
+        }
+
+        /* Future Plans Section */
+        #future {
+            background: #d4dcc8;
+        }
+
+        .future-item {
+            margin-bottom: 3rem;
+        }
+
+        .future-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #223f2a;
+        }
+
+        .future-item p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: #3d3d3d;
+            max-width: 900px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #223f2a;
+            color: #f5f5f0;
+            text-decoration: none;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #3d6547;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            h2 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Circular container -->
+                    <circle cx="16" cy="16" r="14" fill="#478557" stroke="#f5f5f0" stroke-width="1.5"/>
+                    <!-- Seed shape -->
+                    <ellipse cx="16" cy="16" rx="6" ry="8" fill="#f5f5f0" transform="rotate(15 16 16)"/>
+                    <!-- Sprouting leaf -->
+                    <path d="M16 10C16 10 14 9 13 11C12 13 14 14 15 13C16 12 16 11 16 11" 
+                          fill="#8fb899"/>
+                    <!-- Protection arc -->
+                    <path d="M10 16A6 6 0 0 1 22 16" stroke="#f5f5f0" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+                </svg>
+                Seedsafe
+            </div>
+            <ul>
+                <li><a href="#problem">The Problem</a></li>
+                <li><a href="#team">Our Team</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-video-bg">
+            <canvas id="seedCanvas"></canvas>
+        </div>
+        <div class="hero-content">
+            <h1>SeedSafe</h1>
+            <p>Reimagining seed storage — upgraded with smart and resilient design</p>
+        </div>
+    </section>
+
+    <section id="problem">
+        <div class="container">
+            <h2>The Problem</h2>
+            <p>For millions of smallholder farmers, seed failure doesn't come from lack of effort, it comes from uncertainty. Farmers dry and store seeds, but they don't know when seeds are safe, at risk, or already compromised. That information arrives too late, after planting. SeedSafe is designed to change that.</p>
+            <p>Seeds lose viability when moisture and temperature cross biological thresholds for too long. Our approach is simple: control moisture, stabilise the environment, and provide early signals before failure occurs. Every component you see here exists to reduce uncertainty, not to add complexity.</p>
+            <a href="how-it-works.html" class="cta-button">Learn How It Works</a>
+        </div>
+    </section>
+
+    <section id="prototype">
+        <div class="container">
+            <h2>The Prototype</h2>
+            <div class="prototype-cards">
+                <div class="prototype-card">
+                    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#223f2a" stroke-width="2" style="margin-bottom: 1rem;">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                    </svg>
+                    <p>This is our working SeedSafe prototype. It is not a finished product, it is a functional system designed to test a core idea: can we monitor and control seed storage conditions in a way that actually helps farmers make better decisions?</p>
+                </div>
+
+                <div class="prototype-card">
+                    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#223f2a" stroke-width="2" style="margin-bottom: 1rem;">
+                        <path d="M18 20V10M12 20V4M6 20v-6"></path>
+                    </svg>
+                    <p>This prototype demonstrates three critical capabilities: first, that internal humidity can be stabilised despite external conditions; second, that moisture can be actively reduced when thresholds are exceeded; and third, that seed storage conditions can be made visible and understandable to the user.</p>
+                </div>
+
+                <div class="prototype-card">
+                    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#223f2a" stroke-width="2" style="margin-bottom: 1rem;">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+                    </svg>
+                    <p>SeedSafe is not about perfect precision, it is about early warning. By providing farmers with timely signals before irreversible loss occurs, SeedSafe improves planting decisions, reduces seed waste, and increases confidence in seed quality.</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="product-description.html" class="cta-button">View Full Product Description</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="unique">
+        <div class="container">
+            <h2>What Makes Us Unique</h2>
+            <p>SeedSafe is designed as a complete, farmer-first solution. Unlike conventional systems that address drying, storage, or monitoring in isolation, SeedSafe integrates all three into a single, portable unit built for real-world farming conditions.</p>
+            
+            <p>Our design is localised for regions like Bihar, combining low-energy mechanisms with language-neutral visual indicators that work across literacy levels. Inspired by familiar rural storage practices, SeedSafe uses simple mechanics, tactile controls, and clear visual cues to ensure intuitive use without training fatigue.</p>
+            
+            <p>SeedSafe is built to scale. By integrating seamlessly with government seed supply chains and Farmer Producer Organisations (FPOs), it enables trusted distribution and measurable impact—improving seed germination rates, increasing crop yields, and supporting data-driven agricultural planning.</p>
+        </div>
+    </section>
+
+    <section id="team">
+        <div class="container">
+            <h2>Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img class="team-member-photo" src="placeholder1.png" alt="Shrinika Bhavsar" id="shrinika-photo">
+                    <h3>Shrinika Bhavsar</h3>
+                    <p>Ideation and Product Strategy Lead</p>
+                </div>
+                <div class="team-member">
+                    <img class="team-member-photo" src="placeholder2.png" alt="Taksh Kothari" id="taksh-photo">
+                    <h3>Taksh Kothari</h3>
+                    <p>Project Manager and Systems Engineer</p>
+                </div>
+                <div class="team-member">
+                    <img class="team-member-photo" src="placeholder3.png" alt="Aadhar Mandhotra" id="aadhar-photo">
+                    <h3>Aadhar Mandhotra</h3>
+                    <p>Design Lead and System Engineer</p>
+                </div>
+                <div class="team-member">
+                    <img class="team-member-photo" src="placeholder4.png" alt="Vedansh Gupta" id="vedansh-photo">
+                    <h3>Vedansh Gupta</h3>
+                    <p>Web Development Lead and Component Strategist</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="future">
+        <div class="container">
+            <h2>Future Plans and Improvements</h2>
+            
+            <div class="future-item">
+                <h3>1. Deep adoption across Bihar</h3>
+                <p>SeedSafe's first goal is widespread adoption among small and marginal farmers across Bihar. By working closely with Farmer Producer Organisations (FPOs), state agriculture departments, and government seed distribution programs, SeedSafe aims to become a standard post-harvest seed storage solution.</p>
+            </div>
+
+            <div class="future-item">
+                <h3>2. Scaling across India's diverse agro-climatic regions</h3>
+                <p>Once validated across Bihar, SeedSafe will be adapted for use in other high-humidity and climate-sensitive regions across India. Future versions will be tuned to different crop types and regional conditions, enabling deployment nationwide through existing government and cooperative supply chains.</p>
+            </div>
+
+            <div class="future-item">
+                <h3>3. Enhanced digital integration for institutions</h3>
+                <p>Future iterations will strengthen optional app-based dashboards for FPOs and agricultural bodies, enabling large-scale monitoring, inventory planning, and early identification of storage risks—while keeping the farmer-facing experience simple and intuitive.</p>
+            </div>
+
+            <p style="margin-top: 3rem; font-size: 1.2rem;">This prototype is a foundation. Future iterations will integrate improved thermal storage and simplified decision-state indicators. Our goal is a system that fits seamlessly into existing agricultural practices while quietly preventing failure, before it happens.</p>
+        </div>
+    </section>
+
+    <script>
+        // Animated seed pod background
+        const canvas = document.getElementById('seedCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        class Seed {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = -20;
+                this.speed = 0.5 + Math.random() * 1.5;
+                this.size = 3 + Math.random() * 4;
+                this.opacity = 0.3 + Math.random() * 0.4;
+                this.sway = Math.random() * 2 - 1;
+                this.swaySpeed = 0.02 + Math.random() * 0.02;
+                this.angle = 0;
+            }
+
+            update() {
+                this.y += this.speed;
+                this.angle += this.swaySpeed;
+                this.x += Math.sin(this.angle) * this.sway;
+
+                if (this.y > canvas.height + 20) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = '#8fb899';
+                
+                ctx.beginPath();
+                ctx.ellipse(this.x, this.y, this.size, this.size * 1.5, Math.PI / 4, 0, Math.PI * 2);
+                ctx.fill();
+                
+                if (Math.random() > 0.7) {
+                    ctx.strokeStyle = '#7fa889';
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(this.x, this.y - this.size);
+                    ctx.lineTo(this.x - this.size, this.y - this.size * 2);
+                    ctx.stroke();
+                }
+                
+                ctx.restore();
+            }
+        }
+
+        class Moisture {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = 1 + Math.random() * 2;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = 0.3 + Math.random() * 0.7;
+                this.opacity = 0.2 + Math.random() * 0.3;
+            }
+
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+
+                if (this.y > canvas.height) {
+                    this.y = -10;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = '#b8d4c4';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        class Pod {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = 30 + Math.random() * 50;
+                this.opacity = 0.1 + Math.random() * 0.15;
+                this.pulse = Math.random() * Math.PI * 2;
+                this.pulseSpeed = 0.01 + Math.random() * 0.02;
+            }
+
+            update() {
+                this.pulse += this.pulseSpeed;
+            }
+
+            draw() {
+                const pulseSize = this.size + Math.sin(this.pulse) * 5;
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.strokeStyle = '#5a8267';
+                ctx.lineWidth = 2;
+                
+                ctx.beginPath();
+                ctx.roundRect(this.x - pulseSize/2, this.y - pulseSize/2, pulseSize, pulseSize, 10);
+                ctx.stroke();
+                
+                ctx.lineWidth = 1;
+                ctx.globalAlpha = this.opacity * 0.5;
+                for (let i = 1; i < 3; i++) {
+                    ctx.beginPath();
+                    ctx.moveTo(this.x - pulseSize/2, this.y - pulseSize/2 + (pulseSize/3) * i);
+                    ctx.lineTo(this.x + pulseSize/2, this.y - pulseSize/2 + (pulseSize/3) * i);
+                    ctx.stroke();
+                    
+                    ctx.beginPath();
+                    ctx.moveTo(this.x - pulseSize/2 + (pulseSize/3) * i, this.y - pulseSize/2);
+                    ctx.lineTo(this.x - pulseSize/2 + (pulseSize/3) * i, this.y + pulseSize/2);
+                    ctx.stroke();
+                }
+                
+                ctx.restore();
+            }
+        }
+
+        const seeds = Array.from({ length: 50 }, () => new Seed());
+        const moisture = Array.from({ length: 80 }, () => new Moisture());
+        const pods = Array.from({ length: 8 }, () => new Pod());
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            gradient.addColorStop(0, '#2d5a3a');
+            gradient.addColorStop(0.5, '#3d6547');
+            gradient.addColorStop(1, '#4a7c59');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            pods.forEach(pod => {
+                pod.update();
+                pod.draw();
+            });
+
+            moisture.forEach(drop => {
+                drop.update();
+                drop.draw();
+            });
+
+            seeds.forEach(seed => {
+                seed.update();
+                seed.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // Load team member photos
+        async function loadTeamPhotos() {
+            const photos = {
+                'shrinika-photo': 'image_1.jpg',
+                'taksh-photo': 'image_2.jpg',
+                'aadhar-photo': 'image_3.jpg',
+                'vedansh-photo': 'image_4.jpg'
+            };
+
+            for (const [id, filename] of Object.entries(photos)) {
+                try {
+                    const data = await window.fs.readFile(filename);
+                    const blob = new Blob([data], { type: 'image/jpeg' });
+                    const url = URL.createObjectURL(blob);
+                    const imgElement = document.getElementById(id);
+                    if (imgElement) {
+                        imgElement.src = url;
+                        imgElement.onerror = () => {
+                            console.log(`Failed to display ${filename}`);
+                            // Set a colored placeholder background
+                            imgElement.style.background = 'linear-gradient(135deg, #478557 0%, #3d6547 100%)';
+                        };
+                    }
+                } catch (error) {
+                    console.log(`Could not load ${filename}:`, error);
+                    // Set placeholder background color if file doesn't exist
+                    const imgElement = document.getElementById(id);
+                    if (imgElement) {
+                        imgElement.style.background = 'linear-gradient(135deg, #478557 0%, #3d6547 100%)';
+                    }
+                }
+            }
+        }
+
+        loadTeamPhotos();
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
