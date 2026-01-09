@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Description - SeedSafe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Playfair Display', Georgia, serif;
+            line-height: 1.6;
+            color: #2d3e2d;
+            background: #f5f5f0;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(34, 63, 42, 0.95);
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            color: #f5f5f0;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            position: relative;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            color: #f5f5f0;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.7;
+        }
+
+        /* Content Section */
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8rem 5% 6rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            color: #223f2a;
+            font-weight: 400;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin: 3rem 0 1.5rem;
+            color: #223f2a;
+            font-weight: 400;
+        }
+
+        h3 {
+            font-size: 1.6rem;
+            margin: 2.5rem 0 1rem;
+            color: #3d6547;
+            font-weight: 400;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            color: #2d3e2d;
+        }
+
+        ul,
+        ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .intro {
+            font-size: 1.25rem;
+            color: #3d6547;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        /* Back button */
+        .back-button {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: #223f2a;
+            color: #f5f5f0;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 5px;
+            margin-bottom: 2rem;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            background: #3d6547;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            h3 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Shield outline -->
+                    <path d="M24 4L8 10V22C8 32 14 40 24 44C34 40 40 32 40 22V10L24 4Z" fill="#478557" stroke="#f5f5f0"
+                        stroke-width="2" stroke-linejoin="round" />
+
+                    <!-- Inner shield glow -->
+                    <path d="M24 8L12 12.5V22C12 29.5 16.5 36 24 39.5C31.5 36 36 29.5 36 22V12.5L24 8Z" fill="#5a8267"
+                        opacity="0.6" />
+
+                    <!-- Sprouting seed (BIGGER) -->
+                    <ellipse cx="24" cy="27" rx="5.5" ry="7.5" fill="#f5f5f0" />
+
+                    <!-- First leaf (left) - larger -->
+                    <path d="M24 19C24 19 21 18 19.5 21.5C18 25 21 26.5 22.5 24C23 23 24 21.5 24 19Z" fill="#8fb899"
+                        stroke="#7fa889" stroke-width="0.5" />
+
+                    <!-- Second leaf (right) - larger -->
+                    <path d="M24 19C24 19 27 18 28.5 21.5C30 25 27 26.5 25.5 24C25 23 24 21.5 24 19Z" fill="#a8d4b8"
+                        stroke="#8fb899" stroke-width="0.5" />
+
+                    <!-- Stem (thicker) -->
+                    <line x1="24" y1="19" x2="24" y2="27" stroke="#7fa889" stroke-width="2" stroke-linecap="round" />
+
+                    <!-- Root lines -->
+                    <path d="M24 34L21.5 36M24 34L26.5 36" stroke="#d4d4c8" stroke-width="1.2" stroke-linecap="round"
+                        opacity="0.7" />
+                </svg>
+                Seedsafe
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#problem">The Problem</a></li>
+                <li><a href="index.html#team">Our Team</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="content-section">
+        <a href="index.html" class="back-button">← Back to Home</a>
+
+        <h1>Product Description</h1>
+
+        <p class="intro">SeedSafe is a prototype integrated seed storage and moisture-control system designed to reduce
+            uncertainty in seed quality during post-harvest drying and storage. The system stabilises internal
+            environmental conditions and makes otherwise invisible risks, such as excess humidity and thermal stress,
+            visible and actionable for smallholder farmers operating in high-humidity, resource-constrained settings.
+        </p>
+
+        <p>The prototype demonstrates a passive-first, active-when-needed approach to seed preservation, combining
+            moisture absorption, controlled airflow, and real-time environmental monitoring within a compact storage
+            unit.</p>
+
+        <h2>Core Functional Objective</h2>
+        <p>The primary objective of SeedSafe is not high-precision measurement, but early detection and prevention of
+            conditions that lead to irreversible seed viability loss. The prototype focuses on three critical parameters
+            that govern seed health:</p>
+        <ol>
+            <li>Relative humidity</li>
+            <li>Temperature</li>
+            <li>Moisture accumulation over time</li>
+        </ol>
+        <p>By monitoring and actively managing these parameters, SeedSafe enables safer storage decisions before seed
+            damage occurs.</p>
+
+        <h2>System Architecture Overview</h2>
+        <p>The SeedSafe prototype consists of four tightly integrated subsystems:</p>
+        <ol>
+            <li>Environmental sensing and monitoring</li>
+            <li>Passive moisture absorption (desiccant system)</li>
+            <li>Active dehumidification and airflow control</li>
+            <li>Control electronics and user feedback interface</li>
+        </ol>
+        <p>Each subsystem is designed to support the others, forming a closed environmental control loop.</p>
+
+        <h3>1. Environmental Sensing and Monitoring</h3>
+        <p>The prototype uses a DHT temperature and humidity sensor positioned inside the seed storage chamber to
+            continuously monitor internal environmental conditions. This sensor measures relative humidity (RH), a
+            critical indicator of fungal risk and seed respiration rate, and ambient temperature, which influences
+            moisture equilibrium and seed metabolism.</p>
+        <p>Sensor data is processed by an Arduino Pro Mini microcontroller, which serves as the central control unit for
+            the system. Rather than collecting excessive data, the system prioritizes stable, interpretable readings
+            that can be acted upon in real time.</p>
+        <p>A 16×2 LCD display provides immediate visual feedback, displaying current temperature and humidity values.
+            This ensures the system remains accessible without reliance on smartphones, apps, or internet connectivity.
+        </p>
+
+        <h3>2. Passive Moisture Absorption System (Desiccant Layer)</h3>
+        <p>To minimize energy use and maintain environmental stability, SeedSafe employs a passive desiccant-based
+            moisture control system as its first line of defense.</p>
+        <p>Silica gel beads are embedded along the side walls of the storage chamber. These beads absorb excess moisture
+            from the surrounding air, lower relative humidity without electrical power, and reduce humidity spikes
+            during nighttime or high-humidity conditions.</p>
+        <p>This side-mounted configuration increases the effective surface area for moisture absorption while keeping
+            desiccants physically separated from the stored seeds, preventing contamination.</p>
+
+        <h3>3. Active Dehumidification System (Peltier-Based)</h3>
+        <p>When passive desiccation alone is insufficient, such as during prolonged high-humidity conditions, the
+            prototype activates an active dehumidification system. This system uses one Peltier thermoelectric module to
+            create a temperature differential, a heat sink to dissipate excess heat from the hot side of the Peltier,
+            and two fans to manage airflow and heat exchange.</p>
+        <p>As humid air passes over the cooled surface of the Peltier module, moisture condenses and is removed from the
+            internal air. The fans ensure even air circulation throughout the chamber, preventing localised moisture
+            buildup and maintaining uniform conditions.</p>
+        <p>This active system is designed to operate intermittently, only when humidity thresholds are exceeded,
+            preserving energy efficiency.</p>
+
+        <h3>4. Air Circulation and Thermal Management</h3>
+        <p>Controlled airflow is essential for both moisture removal and temperature stability. The prototype
+            incorporates two axial fans positioned to create continuous internal air circulation, directed airflow paths
+            that move air past desiccant surfaces and the Peltier cooling zone, and a heat sink to prevent heat
+            accumulation that could damage seeds.</p>
+        <p>This configuration ensures that drying and dehumidification occur evenly, avoiding hotspots or overdrying
+            zones that could compromise seed viability.</p>
+
+        <h2>Control Logic and System Behavior</h2>
+        <p>The Arduino Pro Mini continuously reads temperature and humidity data from the DHT sensor. When relative
+            humidity exceeds predefined thresholds, the system activates the Peltier module and fans to reduce moisture
+            levels. Once conditions return to a safe range, the system reverts to passive moisture control using the
+            silica desiccant layer.</p>
+        <p>This feedback-driven control loop allows the system to maintain stable conditions over time, rather than
+            reacting only after damage has occurred.</p>
+
+        <h2>Design Philosophy and Constraints</h2>
+        <p>The SeedSafe prototype is intentionally designed with minimal electronics, readable local feedback (LCD
+            display), modular components for future iteration, and compatibility with solar power integration in later
+            versions.</p>
+        <p>The design avoids unnecessary complexity, focusing instead on reliability, interpretability, and integration
+            into existing agricultural workflows.</p>
+
+        <h2>What This Prototype Demonstrates</h2>
+        <p>This prototype successfully demonstrates that internal seed storage humidity can be actively and passively
+            controlled, environmental risks can be made visible to users in real time, and a low-cost, modular system
+            can stabilize seed storage conditions without laboratory infrastructure.</p>
+        <p>While this version does not directly measure germination or pathogens, it addresses the root environmental
+            drivers of seed degradation, forming a foundation for future biological validation and decision-state
+            modeling.</p>
+
+        <h2>Alignment with Long-Term Vision</h2>
+        <p>This prototype represents the first functional step toward SeedSafe's broader vision: a decision-support seed
+            storage system that converts environmental signals into actionable guidance for farmers. Future iterations
+            will focus on solar-powered operation, improved thermal storage, simplified decision-state indicators, and
+            field validation with specific seed types.</p>
+
+        <a href="index.html" class="back-button" style="margin-top: 3rem;">← Back to Home</a>
+    </section>
+
+</body>
+
+</html>
